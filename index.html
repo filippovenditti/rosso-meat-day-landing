@@ -159,16 +159,24 @@
       align-items: center;
     }
 
-    /* eyebrow */
-    .hero-eyebrow {
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 5px;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 8px;
+    /* eyebrow group */
+    .hero-info {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 18px;
       opacity: 0;
       animation: fadeUp 0.7s ease 0.35s forwards;
+    }
+
+    .hero-eyebrow {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: #fff;
+      text-shadow: 0 1px 12px rgba(0,0,0,0.9);
+      margin-bottom: 8px;
     }
 
     .hero-location {
@@ -176,10 +184,29 @@
       font-weight: 500;
       letter-spacing: 3px;
       text-transform: uppercase;
-      color: rgba(255,255,255,0.45);
-      margin-bottom: 18px;
-      opacity: 0;
-      animation: fadeUp 0.7s ease 0.5s forwards;
+      color: rgba(255,255,255,0.80);
+      text-shadow: 0 1px 10px rgba(0,0,0,0.9);
+    }
+
+    @media (max-width: 600px) {
+      .hero-info {
+        background: rgba(0,0,0,0.55);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border-radius: 6px;
+        padding: 12px 18px;
+        gap: 6px;
+      }
+      .hero-eyebrow {
+        font-size: 9px;
+        letter-spacing: 2.5px;
+        margin-bottom: 0;
+      }
+      .hero-location {
+        font-size: 9px;
+        letter-spacing: 2px;
+        color: rgba(255,255,255,0.85);
+      }
     }
 
     /* big headline */
@@ -902,8 +929,10 @@
   <div class="hero-overlay"></div>
 
   <div class="hero-content">
-    <p class="hero-eyebrow">Ogni Mercoledì &middot; Dalle 20:00 &middot; Min. 3 Persone</p>
-    <p class="hero-location">📍 Viale Aventino 32, Roma</p>
+    <div class="hero-info">
+      <p class="hero-eyebrow">Ogni Mercoledì &middot; Dalle 20:00 &middot; Min. 3 Persone</p>
+      <p class="hero-location">📍 Viale Aventino 32, Roma</p>
+    </div>
 
     <h1 class="hero-hl" aria-label="Meat Day">
       <span class="line"><span>MEAT</span></span>
