@@ -8,6 +8,7 @@
   <meta property="og:title" content="MEAT DAY — Rosso Eat Drink Stay">
   <meta property="og:description" content="Il mercoledì si fa serio. -10% sui migliori tagli. Prenota ora.">
   <meta property="og:image" content="utilizzabile.jpg">
+  <meta name="robots" content="noindex, nofollow">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -51,7 +52,7 @@
       padding: 22px 48px;
       display: flex;
       align-items: center;
-      justify-content: center;
+      justify-content: flex-start;
       transition: background 0.4s ease, padding 0.4s ease, backdrop-filter 0.4s ease;
     }
 
@@ -295,7 +296,7 @@
       letter-spacing: 2.5px;
       text-transform: uppercase;
       padding: 18px 52px;
-      border-radius: 3px;
+      border-radius: 50px;
       position: relative;
       overflow: hidden;
       transition: box-shadow 0.3s ease, transform 0.2s ease;
@@ -409,14 +410,6 @@
       margin-bottom: 28px;
     }
 
-    .tag-line::before {
-      content: '';
-      display: block;
-      width: 28px;
-      height: 1px;
-      background: var(--gold);
-      flex-shrink: 0;
-    }
 
     .momento-hl {
       font-family: 'Playfair Display', serif;
@@ -867,7 +860,8 @@
       .hero-hl { font-size: clamp(88px, 23vw, 120px); }
       .final   { padding: 110px 24px; }
 
-      .sticky-cta a { padding: 14px 26px; font-size: 12px; }
+      .btn { font-size: 11px; padding: 14px 28px; letter-spacing: 1.5px; }
+      .sticky-cta a { padding: 13px 24px; font-size: 11px; }
     }
   </style>
 </head>
@@ -894,7 +888,7 @@
   <div class="hero-overlay"></div>
 
   <div class="hero-content">
-    <p class="hero-eyebrow">Ogni Mercoledì &middot; Dalle 20:00</p>
+    <p class="hero-eyebrow">Ogni Mercoledì &middot; Dalle 20:00 &middot; Min. 3 Persone</p>
 
     <h1 class="hero-hl" aria-label="Meat Day">
       <span class="line"><span>MEAT</span></span>
@@ -936,10 +930,6 @@
     </div>
   </div>
 
-  <div class="hero-scroll" aria-hidden="true">
-    <span>Scopri</span>
-    <div class="scroll-line"></div>
-  </div>
 </section>
 
 <!-- ── IL MOMENTO ─────────────────────────────────────────── -->
@@ -1093,6 +1083,7 @@
   <div class="footer-logo">
     <img src="LOGO ROSSO PIENO 2-01 (1).png" alt="Rosso">
   </div>
+  <p>Viale Aventino 32, Roma</p>
   <p>© 2025 Rosso Eat Drink &amp; Stay · Tutti i diritti riservati</p>
   <p>Promo Meat Day valida ogni mercoledì · Min. 3 persone · Esclusivamente sulla Meat Selection</p>
 </footer>
