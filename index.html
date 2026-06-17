@@ -65,20 +65,26 @@
     }
 
     .nav-logo-wrap {
-      background: #fff;
+      background: rgba(196,30,58,0.18);
+      border: 1px solid rgba(196,30,58,0.30);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
       border-radius: 5px;
-      padding: 6px 18px;
+      padding: 6px 16px;
       display: inline-flex;
       align-items: center;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.5);
-      transition: transform 0.3s ease;
+      transition: transform 0.3s ease, background 0.3s ease;
     }
 
-    nav.scrolled .nav-logo-wrap { transform: scale(0.88); }
+    nav.scrolled .nav-logo-wrap {
+      transform: scale(0.88);
+      background: rgba(196,30,58,0.25);
+    }
 
     .nav-logo {
-      height: 52px;
+      height: 48px;
       width: auto;
+      mix-blend-mode: multiply;
     }
 
     /* ── STICKY CTA ──────────────────────────────────────── */
@@ -174,9 +180,20 @@
       letter-spacing: 5px;
       text-transform: uppercase;
       color: var(--gold);
-      margin-bottom: 14px;
+      margin-bottom: 8px;
       opacity: 0;
       animation: fadeUp 0.7s ease 0.35s forwards;
+    }
+
+    .hero-location {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.45);
+      margin-bottom: 18px;
+      opacity: 0;
+      animation: fadeUp 0.7s ease 0.5s forwards;
     }
 
     /* big headline */
@@ -214,7 +231,7 @@
 
     /* countdown */
     .cd-wrap {
-      margin-top: 44px;
+      margin-top: 32px;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -279,7 +296,7 @@
 
     /* hero CTA */
     .hero-cta {
-      margin-top: 44px;
+      margin-top: 32px;
       opacity: 0;
       animation: fadeUp 0.7s ease 1.5s forwards;
     }
@@ -690,16 +707,16 @@
 
     .offerta-lbl {
       font-size: 11px;
-      font-weight: 500;
+      font-weight: 600;
       letter-spacing: 3px;
       text-transform: uppercase;
-      color: rgba(255,255,255,0.58);
+      color: rgba(255,255,255,0.82);
     }
 
     .offerta-sep {
       width: 1px;
       height: 70px;
-      background: rgba(255,255,255,0.2);
+      background: rgba(255,255,255,0.35);
       margin: 0 auto;
     }
 
@@ -711,7 +728,19 @@
       font-family: 'Playfair Display', serif;
       font-style: italic;
       font-size: 18px;
-      color: rgba(255,255,255,0.7);
+      color: rgba(255,255,255,0.92);
+    }
+
+    .offerta-address {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      margin-top: 16px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.65);
     }
 
     /* ── FINAL CTA ───────────────────────────────────────── */
@@ -889,6 +918,7 @@
 
   <div class="hero-content">
     <p class="hero-eyebrow">Ogni Mercoledì &middot; Dalle 20:00 &middot; Min. 3 Persone</p>
+    <p class="hero-location">📍 Viale Aventino 32, Roma</p>
 
     <h1 class="hero-hl" aria-label="Meat Day">
       <span class="line"><span>MEAT</span></span>
@@ -1062,6 +1092,7 @@
 
   </div>
   <p class="offerta-note rv d3">Promo valida esclusivamente sulla Meat Selection &middot; Solo il mercoledì sera</p>
+  <p class="offerta-address rv d4">📍 Viale Aventino 32, Roma</p>
 </section>
 
 <!-- ── FINAL CTA ──────────────────────────────────────────── -->
