@@ -1,0 +1,1194 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MEAT DAY — Rosso Eat Drink &amp; Stay</title>
+  <meta name="description" content="Ogni mercoledì sera: -10% sulla Meat Selection di Rosso. Costata, Fiorentina, Filetto, Tagliata. Dalle 20:00. Prenota il tuo tavolo.">
+  <meta property="og:title" content="MEAT DAY — Rosso Eat Drink Stay">
+  <meta property="og:description" content="Il mercoledì si fa serio. -10% sui migliori tagli. Prenota ora.">
+  <meta property="og:image" content="utilizzabile.jpg">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ── RESET ───────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black:      #0D0B0A;
+      --dark:       #141110;
+      --panel:      #1A1614;
+      --red:        #C41E3A;
+      --red-dark:   #8B0000;
+      --red-glow:   rgba(196,30,58,0.45);
+      --gold:       #C8952A;
+      --cream:      #F5F0EB;
+      --cream-dim:  #A8A09A;
+      --border:     rgba(255,255,255,0.07);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--black);
+      color: var(--cream);
+      font-family: 'Inter', sans-serif;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    img { display: block; max-width: 100%; }
+    a   { text-decoration: none; color: inherit; }
+
+    /* ── NAV ─────────────────────────────────────────────── */
+    nav {
+      position: fixed;
+      inset: 0 0 auto 0;
+      z-index: 100;
+      padding: 22px 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.4s ease, padding 0.4s ease, backdrop-filter 0.4s ease;
+    }
+
+    nav.scrolled {
+      background: rgba(13,11,10,0.92);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      padding: 14px 48px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo-wrap {
+      background: #fff;
+      border-radius: 5px;
+      padding: 6px 18px;
+      display: inline-flex;
+      align-items: center;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+      transition: transform 0.3s ease;
+    }
+
+    nav.scrolled .nav-logo-wrap { transform: scale(0.88); }
+
+    .nav-logo {
+      height: 52px;
+      width: auto;
+    }
+
+    /* ── STICKY CTA ──────────────────────────────────────── */
+    .sticky-cta {
+      position: fixed;
+      bottom: 28px;
+      left: 50%;
+      transform: translateX(-50%) translateY(80px);
+      z-index: 200;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.4s ease, transform 0.5s cubic-bezier(0.34,1.56,0.64,1);
+    }
+
+    .sticky-cta.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+      pointer-events: all;
+    }
+
+    .sticky-cta a {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--red);
+      color: #fff;
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      font-size: 13px;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      padding: 15px 36px;
+      border-radius: 50px;
+      box-shadow: 0 8px 32px var(--red-glow), 0 2px 6px rgba(0,0,0,0.4);
+      transition: background 0.25s ease, box-shadow 0.25s ease, transform 0.2s ease;
+      white-space: nowrap;
+    }
+
+    .sticky-cta a:hover {
+      background: #d9253f;
+      box-shadow: 0 12px 48px rgba(196,30,58,0.65);
+      transform: scale(1.04);
+    }
+
+    /* ── HERO ────────────────────────────────────────────── */
+    .hero {
+      position: relative;
+      height: 100dvh;
+      min-height: 640px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: -8%;
+      background-image: url('utilizzabile.jpg');
+      background-size: cover;
+      background-position: center 30%;
+      will-change: transform;
+    }
+
+    /* multi-layer overlay: dark base + red vignette + bottom fade */
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at center, transparent 25%, rgba(80,0,0,0.18) 100%),
+        linear-gradient(to bottom,
+          rgba(13,11,10,0.55)  0%,
+          rgba(13,11,10,0.20) 30%,
+          rgba(13,11,10,0.55) 68%,
+          rgba(13,11,10,0.97) 100%
+        );
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* eyebrow */
+    .hero-eyebrow {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 14px;
+      opacity: 0;
+      animation: fadeUp 0.7s ease 0.35s forwards;
+    }
+
+    /* big headline */
+    .hero-hl {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(104px, 19vw, 240px);
+      line-height: 0.88;
+      letter-spacing: -1px;
+      overflow: hidden;
+    }
+
+    .hero-hl .line {
+      display: block;
+      overflow: hidden;
+    }
+
+    .hero-hl .line span {
+      display: block;
+      transform: translateY(105%);
+      animation: slideUp 0.75s cubic-bezier(0.22,1,0.36,1) forwards;
+    }
+
+    .hero-hl .line:nth-child(1) span { animation-delay: 0.45s; color: var(--cream); }
+    .hero-hl .line:nth-child(2) span { animation-delay: 0.62s; color: var(--red);   }
+
+    .hero-sub {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: clamp(17px, 2.4vw, 26px);
+      color: var(--cream-dim);
+      margin-top: 18px;
+      opacity: 0;
+      animation: fadeUp 0.7s ease 1.05s forwards;
+    }
+
+    /* countdown */
+    .cd-wrap {
+      margin-top: 44px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+      opacity: 0;
+      animation: fadeUp 0.7s ease 1.25s forwards;
+    }
+
+    .cd-label {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    .countdown {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .cd-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background: rgba(255,255,255,0.06);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 6px;
+      padding: 12px 16px;
+      min-width: 68px;
+    }
+
+    .cd-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 46px;
+      line-height: 1;
+      color: #fff;
+      transition: color 0.15s;
+    }
+
+    .cd-num.tick { color: var(--red); }
+
+    .cd-unit {
+      font-size: 8px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.35);
+      margin-top: 5px;
+    }
+
+    .cd-sep {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 38px;
+      color: rgba(255,255,255,0.25);
+      margin-bottom: 14px;
+      user-select: none;
+    }
+
+    /* hero CTA */
+    .hero-cta {
+      margin-top: 44px;
+      opacity: 0;
+      animation: fadeUp 0.7s ease 1.5s forwards;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: var(--red);
+      color: #fff;
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      font-size: 13px;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      padding: 18px 52px;
+      border-radius: 3px;
+      position: relative;
+      overflow: hidden;
+      transition: box-shadow 0.3s ease, transform 0.2s ease;
+    }
+
+    .btn::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(255,255,255,0.1);
+      transform: translateX(-105%) skewX(-12deg);
+      transition: transform 0.45s ease;
+    }
+
+    .btn:hover::after { transform: translateX(105%) skewX(-12deg); }
+
+    .btn:hover {
+      box-shadow: 0 10px 40px var(--red-glow);
+      transform: translateY(-1px);
+    }
+
+    .btn .ico {
+      transition: transform 0.25s ease;
+      flex-shrink: 0;
+    }
+
+    .btn:hover .ico { transform: translateX(4px); }
+
+    /* scroll indicator */
+    .hero-scroll {
+      position: absolute;
+      bottom: 32px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      opacity: 0;
+      animation: fadeIn 1s ease 2s forwards;
+    }
+
+    .hero-scroll span {
+      font-size: 9px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.25);
+    }
+
+    .scroll-line {
+      width: 1px;
+      height: 50px;
+      background: linear-gradient(to bottom, rgba(255,255,255,0.3), transparent);
+      animation: linePulse 2.2s ease-in-out infinite;
+    }
+
+    /* ── IL MOMENTO ──────────────────────────────────────── */
+    .momento {
+      background: var(--dark);
+      overflow: hidden;
+    }
+
+    .momento-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 580px;
+    }
+
+    .momento-img {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .momento-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 40%;
+      filter: brightness(0.82) saturate(1.15);
+      transition: transform 0.9s ease;
+      display: block;
+    }
+
+    .momento-img:hover img { transform: scale(1.04); }
+
+    /* fade right edge into dark panel */
+    .momento-img::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to right, transparent 55%, var(--dark));
+    }
+
+    .momento-text {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 80px 80px 80px 56px;
+    }
+
+    .tag-line {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 28px;
+    }
+
+    .tag-line::before {
+      content: '';
+      display: block;
+      width: 28px;
+      height: 1px;
+      background: var(--gold);
+      flex-shrink: 0;
+    }
+
+    .momento-hl {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(34px, 3.8vw, 54px);
+      font-style: italic;
+      line-height: 1.22;
+      color: var(--cream);
+      margin-bottom: 32px;
+    }
+
+    .momento-hl em {
+      font-style: normal;
+      color: var(--red);
+    }
+
+    .momento-body {
+      font-size: 15px;
+      font-weight: 300;
+      line-height: 1.95;
+      color: var(--cream-dim);
+      max-width: 400px;
+    }
+
+    .momento-body + .momento-body { margin-top: 18px; }
+
+    /* ── LA SELEZIONE ────────────────────────────────────── */
+    .selezione {
+      background: var(--black);
+      padding: 120px 48px;
+    }
+
+    .sec-header {
+      text-align: center;
+      margin-bottom: 80px;
+    }
+
+    .badge-pill {
+      display: inline-flex;
+      align-items: center;
+      background: var(--red);
+      color: #fff;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 18px;
+      letter-spacing: 3px;
+      padding: 7px 28px;
+      border-radius: 2px;
+      margin-bottom: 24px;
+    }
+
+    .sec-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(52px, 8.5vw, 110px);
+      line-height: 0.93;
+      color: var(--cream);
+    }
+
+    .sec-subtitle {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 18px;
+      color: var(--cream-dim);
+      margin-top: 18px;
+    }
+
+    /* showcase image */
+    .showcase {
+      position: relative;
+      border-radius: 4px;
+      overflow: hidden;
+      margin-bottom: 4px;
+      height: 380px;
+      max-width: 1200px;
+      margin-left: auto;
+      margin-right: auto;
+      margin-bottom: 4px;
+    }
+
+    .showcase img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 55%;
+      filter: brightness(0.75) saturate(1.2);
+    }
+
+    .showcase-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to top,
+        rgba(13,11,10,0.85) 0%,
+        rgba(13,11,10,0.2)  50%,
+        transparent         100%
+      );
+      display: flex;
+      align-items: flex-end;
+      padding: 36px 40px;
+    }
+
+    .showcase-quote {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 22px;
+      color: rgba(245,240,235,0.9);
+      max-width: 540px;
+    }
+
+    /* cuts grid */
+    .cuts-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 3px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .cut-card {
+      background: var(--panel);
+      padding: 44px 36px;
+      position: relative;
+      overflow: hidden;
+      border-top: 2px solid transparent;
+      transition: border-color 0.35s ease, transform 0.35s ease, box-shadow 0.35s ease;
+    }
+
+    .cut-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 0% 100%, rgba(196,30,58,0.1) 0%, transparent 65%);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+
+    .cut-card:hover {
+      border-top-color: var(--red);
+      transform: translateY(-5px);
+      box-shadow: 0 24px 60px rgba(0,0,0,0.55);
+    }
+
+    .cut-card:hover::before { opacity: 1; }
+
+    .cut-num {
+      position: absolute;
+      top: 14px;
+      right: 20px;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 80px;
+      line-height: 1;
+      color: rgba(196,30,58,0.06);
+      user-select: none;
+      transition: color 0.35s ease;
+    }
+
+    .cut-card:hover .cut-num { color: rgba(196,30,58,0.13); }
+
+    .cut-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: rgba(196,30,58,0.12);
+      border: 1px solid rgba(196,30,58,0.28);
+      color: #e85a6a;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 2px;
+      margin-bottom: 18px;
+    }
+
+    .cut-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 44px;
+      line-height: 1;
+      color: var(--cream);
+      margin-bottom: 4px;
+    }
+
+    .cut-rule {
+      width: 32px;
+      height: 2px;
+      background: var(--red);
+      margin: 20px 0;
+      transition: width 0.4s ease;
+    }
+
+    .cut-card:hover .cut-rule { width: 58px; }
+
+    .cut-desc {
+      font-size: 13px;
+      font-weight: 300;
+      line-height: 1.85;
+      color: var(--cream-dim);
+    }
+
+    .cut-discount {
+      margin-top: 32px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+    }
+
+    .cut-pct {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 56px;
+      color: var(--red);
+      line-height: 1;
+    }
+
+    .cut-pct-label {
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--cream-dim);
+      margin-top: 2px;
+    }
+
+    /* ── L'OFFERTA ───────────────────────────────────────── */
+    .offerta {
+      background: var(--red);
+      padding: 100px 48px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* large watermark */
+    .offerta::before {
+      content: 'MEAT DAY';
+      position: absolute;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(120px, 22vw, 300px);
+      color: rgba(0,0,0,0.08);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      white-space: nowrap;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    .offerta-grid {
+      position: relative;
+      z-index: 1;
+      max-width: 1000px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1px 1fr 1px 1fr;
+      align-items: center;
+      gap: 0;
+    }
+
+    .offerta-item {
+      text-align: center;
+      padding: 32px 24px;
+    }
+
+    .offerta-icon {
+      margin: 0 auto 18px;
+      width: 48px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(255,255,255,0.3);
+      border-radius: 50%;
+    }
+
+    .offerta-icon svg { width: 22px; height: 22px; stroke: rgba(255,255,255,0.8); }
+
+    .offerta-val {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(36px, 4.5vw, 58px);
+      color: #fff;
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+
+    .offerta-lbl {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.58);
+    }
+
+    .offerta-sep {
+      width: 1px;
+      height: 70px;
+      background: rgba(255,255,255,0.2);
+      margin: 0 auto;
+    }
+
+    .offerta-note {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      margin-top: 56px;
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 18px;
+      color: rgba(255,255,255,0.7);
+    }
+
+    /* ── FINAL CTA ───────────────────────────────────────── */
+    .final {
+      background: var(--black);
+      padding: 160px 48px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* red glow behind */
+    .final::before {
+      content: '';
+      position: absolute;
+      bottom: -80px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60%;
+      height: 300px;
+      background: radial-gradient(ellipse, rgba(196,30,58,0.18) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .final-eyebrow {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 28px;
+    }
+
+    .final-hl {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(60px, 10vw, 130px);
+      line-height: 0.92;
+      color: var(--cream);
+      margin-bottom: 28px;
+    }
+
+    .final-sub {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 20px;
+      color: var(--cream-dim);
+      max-width: 460px;
+      margin: 0 auto 52px;
+      line-height: 1.7;
+    }
+
+    .final-note {
+      margin-top: 28px;
+      font-size: 11px;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.18);
+    }
+
+    /* ── FOOTER ──────────────────────────────────────────── */
+    footer {
+      background: #070605;
+      padding: 48px;
+      text-align: center;
+      border-top: 1px solid var(--border);
+    }
+
+    .footer-logo {
+      background: #fff;
+      display: inline-block;
+      border-radius: 4px;
+      padding: 5px 14px;
+      margin-bottom: 20px;
+    }
+
+    .footer-logo img { height: 38px; width: auto; }
+
+    footer p {
+      font-size: 11px;
+      color: rgba(255,255,255,0.2);
+      letter-spacing: 1px;
+      line-height: 2;
+    }
+
+    /* ── SCROLL REVEAL ───────────────────────────────────── */
+    .rv {
+      opacity: 0;
+      transform: translateY(36px);
+      transition: opacity 0.75s ease, transform 0.75s ease;
+    }
+    .rv.in { opacity: 1; transform: translateY(0); }
+    .rv.d1 { transition-delay: 0.1s; }
+    .rv.d2 { transition-delay: 0.2s; }
+    .rv.d3 { transition-delay: 0.3s; }
+    .rv.d4 { transition-delay: 0.42s; }
+
+    /* ── KEYFRAMES ───────────────────────────────────────── */
+    @keyframes fadeUp  { from { opacity:0; transform:translateY(22px); } to { opacity:1; transform:translateY(0); } }
+    @keyframes slideUp { from { transform:translateY(105%); }            to { transform:translateY(0); } }
+    @keyframes fadeIn  { from { opacity:0; }                             to { opacity:1; } }
+    @keyframes linePulse {
+      0%,100% { opacity:0.25; transform:scaleY(1);   }
+      50%      { opacity:0.7;  transform:scaleY(0.55);}
+    }
+
+    /* ── RESPONSIVE ──────────────────────────────────────── */
+    @media (max-width: 1024px) {
+      .cuts-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 860px) {
+      nav { padding: 16px 24px; }
+
+      .momento-inner {
+        grid-template-columns: 1fr;
+      }
+      .momento-img {
+        height: 320px;
+      }
+      .momento-img::after {
+        background: linear-gradient(to top, var(--dark) 0%, transparent 55%);
+      }
+      .momento-text {
+        padding: 52px 32px 64px;
+      }
+
+      .offerta-grid {
+        grid-template-columns: 1fr;
+        gap: 0;
+      }
+      .offerta-sep {
+        width: 60px;
+        height: 1px;
+        margin: 4px auto;
+      }
+
+      .selezione { padding: 80px 24px; }
+      .showcase { height: 260px; }
+    }
+
+    @media (max-width: 600px) {
+      .cuts-grid { grid-template-columns: 1fr; }
+      .countdown { gap: 7px; }
+      .cd-item { min-width: 60px; padding: 10px 13px; }
+      .cd-num  { font-size: 38px; }
+      .hero-hl { font-size: clamp(88px, 23vw, 120px); }
+      .final   { padding: 110px 24px; }
+
+      .sticky-cta a { padding: 14px 26px; font-size: 12px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── STICKY CTA ──────────────────────────────────────────── -->
+<div class="sticky-cta" id="stickyCta">
+  <a href="https://www.pro20.net/bfrm?form=Tl7UoZL6" target="_blank" rel="noopener noreferrer">
+    <span>Prenota Ora</span>
+    <svg class="ico" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+  </a>
+</div>
+
+<!-- ── NAV ────────────────────────────────────────────────── -->
+<nav id="navbar">
+  <div class="nav-logo-wrap">
+    <img src="LOGO ROSSO PIENO 2-01 (1).png" alt="Rosso Eat Drink Stay" class="nav-logo">
+  </div>
+</nav>
+
+<!-- ── HERO ───────────────────────────────────────────────── -->
+<section class="hero" id="hero">
+  <div class="hero-bg" id="heroBg"></div>
+  <div class="hero-overlay"></div>
+
+  <div class="hero-content">
+    <p class="hero-eyebrow">Ogni Mercoledì &middot; Dalle 20:00</p>
+
+    <h1 class="hero-hl" aria-label="Meat Day">
+      <span class="line"><span>MEAT</span></span>
+      <span class="line"><span>DAY</span></span>
+    </h1>
+
+    <p class="hero-sub">Il mercoledì si fa serio.</p>
+
+    <div class="cd-wrap">
+      <p class="cd-label">Prossimo Meat Day tra</p>
+      <div class="countdown" role="timer" aria-live="polite" aria-label="Conto alla rovescia">
+        <div class="cd-item">
+          <span class="cd-num" id="cd-d">00</span>
+          <span class="cd-unit">Giorni</span>
+        </div>
+        <span class="cd-sep" aria-hidden="true">:</span>
+        <div class="cd-item">
+          <span class="cd-num" id="cd-h">00</span>
+          <span class="cd-unit">Ore</span>
+        </div>
+        <span class="cd-sep" aria-hidden="true">:</span>
+        <div class="cd-item">
+          <span class="cd-num" id="cd-m">00</span>
+          <span class="cd-unit">Min</span>
+        </div>
+        <span class="cd-sep" aria-hidden="true">:</span>
+        <div class="cd-item">
+          <span class="cd-num" id="cd-s">00</span>
+          <span class="cd-unit">Sec</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-cta">
+      <a href="https://www.pro20.net/bfrm?form=Tl7UoZL6" class="btn" target="_blank" rel="noopener noreferrer">
+        <span>Prenota il tuo Tavolo</span>
+        <svg class="ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+    </div>
+  </div>
+
+  <div class="hero-scroll" aria-hidden="true">
+    <span>Scopri</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- ── IL MOMENTO ─────────────────────────────────────────── -->
+<section class="momento" aria-label="Il rito della carne">
+  <div class="momento-inner">
+    <div class="momento-img">
+      <img src="utilizzabile.jpg" alt="Vitrina della Meat Selection di Rosso" loading="lazy">
+    </div>
+    <div class="momento-text">
+      <span class="tag-line rv">Il Rito</span>
+      <h2 class="momento-hl rv d1">
+        La carne migliore,<br>
+        <em>al momento giusto.</em>
+      </h2>
+      <p class="momento-body rv d2">
+        Selezionata, maturata, esposta. Ogni taglio nella nostra vetrina ha una storia prima ancora di arrivare sulla brace. Il mercoledì sera è il momento in cui quella storia diventa il tuo pasto.
+      </p>
+      <p class="momento-body rv d3">
+        Dalle 20:00, la Meat Selection di Rosso ti aspetta con il&nbsp;<strong>10% di sconto su ogni taglio</strong>. Per chi sa riconoscere la differenza.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ── LA SELEZIONE ───────────────────────────────────────── -->
+<section class="selezione" aria-label="La Selezione dei tagli">
+  <div class="sec-header">
+    <div class="badge-pill rv">— 10% ogni mercoledì —</div>
+    <h2 class="sec-title rv d1">La Selezione</h2>
+    <p class="sec-subtitle rv d2">Quattro tagli. Un solo giorno per ottenerli al prezzo migliore.</p>
+  </div>
+
+  <div class="showcase rv">
+    <img src="utilizzabile.jpg" alt="I tagli della Meat Selection di Rosso" loading="lazy">
+    <div class="showcase-overlay">
+      <p class="showcase-quote">"La carne che scegli ti dice chi sei."</p>
+    </div>
+  </div>
+
+  <div class="cuts-grid">
+
+    <div class="cut-card rv">
+      <span class="cut-num" aria-hidden="true">01</span>
+      <span class="cut-tag">-10% Meat Day</span>
+      <h3 class="cut-name">Costata</h3>
+      <div class="cut-rule"></div>
+      <p class="cut-desc">Marezzatura intensa, crosta dorata. Il grasso che fonde e porta il sapore dentro. Il taglio di chi sa scegliere senza compromessi.</p>
+      <div class="cut-discount">
+        <div class="cut-pct">-10%</div>
+        <div class="cut-pct-label">ogni mercoledì</div>
+      </div>
+    </div>
+
+    <div class="cut-card rv d1">
+      <span class="cut-num" aria-hidden="true">02</span>
+      <span class="cut-tag">-10% Meat Day</span>
+      <h3 class="cut-name">Fiorentina</h3>
+      <div class="cut-rule"></div>
+      <p class="cut-desc">Maestosa. Filetto e controfiletto separati dall'osso a T. Si condivide — ma non si dimentica mai.</p>
+      <div class="cut-discount">
+        <div class="cut-pct">-10%</div>
+        <div class="cut-pct-label">ogni mercoledì</div>
+      </div>
+    </div>
+
+    <div class="cut-card rv d2">
+      <span class="cut-num" aria-hidden="true">03</span>
+      <span class="cut-tag">-10% Meat Day</span>
+      <h3 class="cut-name">Filetto</h3>
+      <div class="cut-rule"></div>
+      <p class="cut-desc">Il più nobile. Fibra fine, tenerezza assoluta. Si scioglie al primo morso. Nessun intervento necessario.</p>
+      <div class="cut-discount">
+        <div class="cut-pct">-10%</div>
+        <div class="cut-pct-label">ogni mercoledì</div>
+      </div>
+    </div>
+
+    <div class="cut-card rv d3">
+      <span class="cut-num" aria-hidden="true">04</span>
+      <span class="cut-tag">-10% Meat Day</span>
+      <h3 class="cut-name">Tagliata</h3>
+      <div class="cut-rule"></div>
+      <p class="cut-desc">Affettata al momento. Rucola, scaglie, olio extravergine. Il classico che non delude mai — al prezzo migliore della settimana.</p>
+      <div class="cut-discount">
+        <div class="cut-pct">-10%</div>
+        <div class="cut-pct-label">ogni mercoledì</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── L'OFFERTA ──────────────────────────────────────────── -->
+<section class="offerta" aria-label="Dettagli dell'offerta">
+  <div class="offerta-grid">
+
+    <div class="offerta-item rv">
+      <div class="offerta-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
+        </svg>
+      </div>
+      <div class="offerta-val">Mercoledì</div>
+      <div class="offerta-lbl">Ogni settimana</div>
+    </div>
+
+    <div class="offerta-sep" aria-hidden="true"></div>
+
+    <div class="offerta-item rv d1">
+      <div class="offerta-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15.5 15.5"/>
+        </svg>
+      </div>
+      <div class="offerta-val">Dalle 20:00</div>
+      <div class="offerta-lbl">Orario cena</div>
+    </div>
+
+    <div class="offerta-sep" aria-hidden="true"></div>
+
+    <div class="offerta-item rv d2">
+      <div class="offerta-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+        </svg>
+      </div>
+      <div class="offerta-val">Min. 3 Pers.</div>
+      <div class="offerta-lbl">Per tavolo</div>
+    </div>
+
+  </div>
+  <p class="offerta-note rv d3">Promo valida esclusivamente sulla Meat Selection &middot; Solo il mercoledì sera</p>
+</section>
+
+<!-- ── FINAL CTA ──────────────────────────────────────────── -->
+<section class="final" aria-label="Prenota il tuo tavolo">
+  <p class="final-eyebrow rv">— Il tuo Meat Day ti aspetta —</p>
+  <h2 class="final-hl rv d1">Il tuo tavolo<br>ti aspetta.</h2>
+  <p class="final-sub rv d2">I posti sono limitati. Il mercoledì passa in fretta.<br>La carne no.</p>
+  <div class="rv d3">
+    <a href="https://www.pro20.net/bfrm?form=Tl7UoZL6" class="btn" target="_blank" rel="noopener noreferrer" style="font-size:14px; padding:20px 60px;">
+      <span>Prenota Ora</span>
+      <svg class="ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+    </a>
+  </div>
+  <p class="final-note rv d4">Rosso Eat · Drink · Stay &nbsp;·&nbsp; Mercoledì dalle 20:00 &nbsp;·&nbsp; Min. 3 persone</p>
+</section>
+
+<!-- ── FOOTER ─────────────────────────────────────────────── -->
+<footer>
+  <div class="footer-logo">
+    <img src="LOGO ROSSO PIENO 2-01 (1).png" alt="Rosso">
+  </div>
+  <p>© 2025 Rosso Eat Drink &amp; Stay · Tutti i diritti riservati</p>
+  <p>Promo Meat Day valida ogni mercoledì · Min. 3 persone · Esclusivamente sulla Meat Selection</p>
+</footer>
+
+<!-- ── JS ─────────────────────────────────────────────────── -->
+<script>
+  /* ── COUNTDOWN ──────────────────────────── */
+  function nextMeatDay() {
+    const now = new Date();
+    const day = now.getDay(); // 0=Dom, 3=Mer
+    let diff = (3 - day + 7) % 7;
+    // Se è mercoledì ma dopo le 20:00 → prossimo mercoledì
+    if (diff === 0 && now.getHours() >= 20) diff = 7;
+    const target = new Date(now);
+    target.setDate(now.getDate() + diff);
+    target.setHours(20, 0, 0, 0);
+    return target;
+  }
+
+  function pad(n) { return String(n).padStart(2, '0'); }
+
+  const els = {
+    d: document.getElementById('cd-d'),
+    h: document.getElementById('cd-h'),
+    m: document.getElementById('cd-m'),
+    s: document.getElementById('cd-s'),
+  };
+
+  function tick() {
+    const ms = nextMeatDay() - Date.now();
+    if (ms <= 0) { ['d','h','m','s'].forEach(k => els[k].textContent = '00'); return; }
+    const d = Math.floor(ms / 86400000);
+    const h = Math.floor((ms % 86400000) / 3600000);
+    const m = Math.floor((ms % 3600000)  / 60000);
+    const s = Math.floor((ms % 60000)    / 1000);
+
+    const prev = els.s.textContent;
+    els.d.textContent = pad(d);
+    els.h.textContent = pad(h);
+    els.m.textContent = pad(m);
+    els.s.textContent = pad(s);
+
+    // flash seconds on change
+    if (pad(s) !== prev) {
+      els.s.classList.add('tick');
+      setTimeout(() => els.s.classList.remove('tick'), 160);
+    }
+  }
+
+  tick();
+  setInterval(tick, 1000);
+
+  /* ── SCROLL HANDLERS ────────────────────── */
+  const navbar   = document.getElementById('navbar');
+  const stickyCta= document.getElementById('stickyCta');
+  const heroBg   = document.getElementById('heroBg');
+  const heroEl   = document.getElementById('hero');
+
+  let ticking = false;
+
+  window.addEventListener('scroll', () => {
+    if (ticking) return;
+    requestAnimationFrame(() => {
+      const sy = window.scrollY;
+      const heroH = heroEl.offsetHeight;
+
+      // navbar
+      navbar.classList.toggle('scrolled', sy > 60);
+
+      // sticky cta: shows after 60% of hero height
+      stickyCta.classList.toggle('show', sy > heroH * 0.6);
+
+      // parallax (only while hero visible, capped for performance)
+      if (sy <= heroH) {
+        heroBg.style.transform = `translateY(${(sy * 0.28).toFixed(1)}px)`;
+      }
+
+      ticking = false;
+    });
+    ticking = true;
+  }, { passive: true });
+
+  /* ── SCROLL REVEAL ──────────────────────── */
+  const revEls = document.querySelectorAll('.rv');
+
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('in');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
+
+  revEls.forEach(el => io.observe(el));
+</script>
+
+</body>
+</html>
