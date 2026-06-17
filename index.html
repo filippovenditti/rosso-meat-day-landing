@@ -64,28 +64,14 @@
       border-bottom: 1px solid var(--border);
     }
 
-    .nav-logo-wrap {
-      background: rgba(196,30,58,0.18);
-      border: 1px solid rgba(196,30,58,0.30);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
-      border-radius: 5px;
-      padding: 6px 16px;
-      display: inline-flex;
-      align-items: center;
-      transition: transform 0.3s ease, background 0.3s ease;
-    }
-
-    nav.scrolled .nav-logo-wrap {
-      transform: scale(0.88);
-      background: rgba(196,30,58,0.25);
-    }
-
     .nav-logo {
-      height: 48px;
+      height: 52px;
       width: auto;
-      mix-blend-mode: multiply;
+      filter: drop-shadow(0 2px 10px rgba(0,0,0,0.5));
+      transition: height 0.3s ease, opacity 0.3s ease;
     }
+
+    nav.scrolled .nav-logo { height: 42px; }
 
     /* ── STICKY CTA ──────────────────────────────────────── */
     .sticky-cta {
@@ -480,7 +466,7 @@
       font-family: 'Bebas Neue', sans-serif;
       font-size: clamp(52px, 8.5vw, 110px);
       line-height: 0.93;
-      color: var(--cream);
+      color: #FFFFFF;
     }
 
     .sec-subtitle {
@@ -544,11 +530,13 @@
     }
 
     .cut-card {
-      background: var(--panel);
+      background: #201E1B;
       padding: 44px 36px;
       position: relative;
       overflow: hidden;
-      border-top: 2px solid transparent;
+      border-top: 2px solid rgba(196,30,58,0.22);
+      border-left: 1px solid rgba(255,255,255,0.04);
+      border-right: 1px solid rgba(255,255,255,0.04);
       transition: border-color 0.35s ease, transform 0.35s ease, box-shadow 0.35s ease;
     }
 
@@ -556,7 +544,7 @@
       content: '';
       position: absolute;
       inset: 0;
-      background: radial-gradient(ellipse at 0% 100%, rgba(196,30,58,0.1) 0%, transparent 65%);
+      background: radial-gradient(ellipse at 0% 100%, rgba(196,30,58,0.12) 0%, transparent 65%);
       opacity: 0;
       transition: opacity 0.4s ease;
     }
@@ -564,7 +552,7 @@
     .cut-card:hover {
       border-top-color: var(--red);
       transform: translateY(-5px);
-      box-shadow: 0 24px 60px rgba(0,0,0,0.55);
+      box-shadow: 0 24px 60px rgba(0,0,0,0.65);
     }
 
     .cut-card:hover::before { opacity: 1; }
@@ -576,63 +564,64 @@
       font-family: 'Bebas Neue', sans-serif;
       font-size: 80px;
       line-height: 1;
-      color: rgba(196,30,58,0.06);
+      color: rgba(196,30,58,0.07);
       user-select: none;
       transition: color 0.35s ease;
     }
 
-    .cut-card:hover .cut-num { color: rgba(196,30,58,0.13); }
+    .cut-card:hover .cut-num { color: rgba(196,30,58,0.18); }
 
     .cut-tag {
       display: inline-flex;
       align-items: center;
       gap: 5px;
-      background: rgba(196,30,58,0.12);
-      border: 1px solid rgba(196,30,58,0.28);
-      color: #e85a6a;
+      background: rgba(196,30,58,0.10);
+      border: 1px solid rgba(196,30,58,0.25);
+      color: rgba(232,90,106,0.85);
       font-size: 9px;
       font-weight: 700;
       letter-spacing: 2.5px;
       text-transform: uppercase;
       padding: 4px 10px;
       border-radius: 2px;
-      margin-bottom: 18px;
+      margin-bottom: 14px;
     }
 
     .cut-name {
       font-family: 'Bebas Neue', sans-serif;
-      font-size: 44px;
+      font-size: 54px;
       line-height: 1;
-      color: var(--cream);
-      margin-bottom: 4px;
+      color: #FFFFFF;
+      letter-spacing: 1px;
+      text-shadow: 0 2px 16px rgba(0,0,0,0.5);
     }
 
     .cut-rule {
       width: 32px;
       height: 2px;
       background: var(--red);
-      margin: 20px 0;
+      margin: 18px 0;
       transition: width 0.4s ease;
     }
 
-    .cut-card:hover .cut-rule { width: 58px; }
+    .cut-card:hover .cut-rule { width: 60px; }
 
     .cut-desc {
       font-size: 13px;
       font-weight: 300;
       line-height: 1.85;
-      color: var(--cream-dim);
+      color: #8E8680;
     }
 
     .cut-discount {
-      margin-top: 32px;
-      padding-top: 24px;
-      border-top: 1px solid var(--border);
+      margin-top: 28px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255,255,255,0.06);
     }
 
     .cut-pct {
       font-family: 'Bebas Neue', sans-serif;
-      font-size: 56px;
+      font-size: 52px;
       color: var(--red);
       line-height: 1;
     }
@@ -641,7 +630,7 @@
       font-size: 10px;
       letter-spacing: 2px;
       text-transform: uppercase;
-      color: var(--cream-dim);
+      color: rgba(255,255,255,0.35);
       margin-top: 2px;
     }
 
@@ -809,14 +798,12 @@
     }
 
     .footer-logo {
-      background: #fff;
-      display: inline-block;
-      border-radius: 4px;
-      padding: 5px 14px;
-      margin-bottom: 20px;
+      height: 52px;
+      width: auto;
+      margin: 0 auto 24px;
+      display: block;
+      filter: drop-shadow(0 2px 8px rgba(0,0,0,0.4));
     }
-
-    .footer-logo img { height: 38px; width: auto; }
 
     footer p {
       font-size: 11px;
@@ -906,9 +893,7 @@
 
 <!-- ── NAV ────────────────────────────────────────────────── -->
 <nav id="navbar">
-  <div class="nav-logo-wrap">
-    <img src="LOGO ROSSO PIENO 2-01 (1).png" alt="Rosso Eat Drink Stay" class="nav-logo">
-  </div>
+  <img src="LOGO ROSSO PIENO 2-01 (1).png" alt="Rosso Eat Drink Stay" class="nav-logo">
 </nav>
 
 <!-- ── HERO ───────────────────────────────────────────────── -->
@@ -1107,13 +1092,12 @@
     </a>
   </div>
   <p class="final-note rv d4">Rosso Eat · Drink · Stay &nbsp;·&nbsp; Mercoledì dalle 20:00 &nbsp;·&nbsp; Min. 3 persone</p>
+  <p class="final-note rv d4" style="margin-top:10px;">📍 Viale Aventino 32, Roma</p>
 </section>
 
 <!-- ── FOOTER ─────────────────────────────────────────────── -->
 <footer>
-  <div class="footer-logo">
-    <img src="LOGO ROSSO PIENO 2-01 (1).png" alt="Rosso">
-  </div>
+  <img src="LOGO ROSSO PIENO 2-01 (1).png" alt="Rosso" class="footer-logo">
   <p>Viale Aventino 32, Roma</p>
   <p>© 2025 Rosso Eat Drink &amp; Stay · Tutti i diritti riservati</p>
   <p>Promo Meat Day valida ogni mercoledì · Min. 3 persone · Esclusivamente sulla Meat Selection</p>
