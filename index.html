@@ -868,6 +868,15 @@
     @media (max-width: 860px) {
       nav { padding: 16px 24px; }
 
+      /* ── HERO typography ── */
+      .hero-info { gap: 8px; margin-bottom: 20px; }
+      .hero-eyebrow { font-size: 13px; letter-spacing: 3px; }
+      .hero-location { font-size: 12px; letter-spacing: 2px; }
+      .hero-sub { font-size: 20px; margin-top: 14px; }
+      .cd-label { font-size: 12px; letter-spacing: 3px; }
+      .cd-unit { font-size: 10px; letter-spacing: 1.5px; margin-top: 4px; }
+
+      /* ── MOMENTO ── */
       .momento-inner {
         grid-template-columns: 1fr;
         padding: 0 24px 48px;
@@ -881,11 +890,26 @@
         margin-right: -24px;
         border-radius: 0;
       }
-      .momento-text {
-        padding: 0 8px 16px;
-      }
-      .discount-strip { flex-direction: column; gap: 8px; text-align: center; }
+      .momento-text { padding: 0 20px 20px; }
+      .tag-line { font-size: 12px; letter-spacing: 3px; margin-bottom: 20px; }
+      .momento-hl { font-size: 38px; margin-bottom: 24px; }
+      .momento-body { font-size: 16px; line-height: 1.85; color: #B5ADA6; }
 
+      /* ── SELEZIONE ── */
+      .selezione { padding: 80px 24px; }
+      .showcase { height: 260px; }
+      .sec-subtitle { font-size: 16px; }
+      .cut-card { padding: 36px 28px; }
+      .cut-name { font-size: 50px; }
+      .cut-desc { font-size: 14px; line-height: 1.75; color: #A09890; }
+
+      /* ── DISCOUNT STRIP ── */
+      .discount-strip { flex-direction: column; gap: 6px; text-align: center; padding: 28px 24px; }
+      .discount-strip-pct { font-size: 64px; }
+      .discount-strip-label { font-size: 14px; letter-spacing: 3px; }
+      .discount-strip-sub { font-size: 17px; }
+
+      /* ── OFFERTA ── */
       .offerta-grid {
         grid-template-columns: 1fr;
         gap: 0;
@@ -895,9 +919,15 @@
         height: 1px;
         margin: 4px auto;
       }
+      .offerta-item { padding: 28px 16px; }
+      .offerta-lbl { font-size: 13px; letter-spacing: 2.5px; }
+      .offerta-note { font-size: 17px; margin-top: 40px; }
+      .offerta-address { font-size: 13px; letter-spacing: 2px; }
 
-      .selezione { padding: 80px 24px; }
-      .showcase { height: 260px; }
+      /* ── FINAL ── */
+      .final-eyebrow { font-size: 12px; letter-spacing: 4px; }
+      .final-sub { font-size: 18px; }
+      .final-note { font-size: 12px; letter-spacing: 1.5px; }
     }
 
     @media (max-width: 600px) {
@@ -906,10 +936,13 @@
       .cd-item { min-width: 60px; padding: 10px 13px; }
       .cd-num  { font-size: 38px; }
       .hero-hl { font-size: clamp(88px, 23vw, 120px); }
+      .hero-sub { font-size: 19px; }
       .final   { padding: 110px 24px; }
 
-      .btn { font-size: 11px; padding: 14px 28px; letter-spacing: 1.5px; }
-      .sticky-cta a { padding: 13px 24px; font-size: 11px; }
+      .btn { font-size: 12px; padding: 16px 32px; letter-spacing: 2px; }
+      .sticky-cta a { padding: 13px 24px; font-size: 12px; }
+
+      footer p { font-size: 12px; letter-spacing: 0.5px; color: rgba(255,255,255,0.3); }
     }
   </style>
 </head>
