@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MEAT DAY — Rosso Eat Drink &amp; Stay</title>
+  <title>MEAT SELECTION — Rosso Eat Drink &amp; Stay</title>
   <meta name="description" content="Ogni mercoledì sera: -10% sulla Meat Selection di Rosso. Costata, Fiorentina, Filetto, Tagliata. Dalle 20:00. Prenota il tuo tavolo.">
-  <meta property="og:title" content="MEAT DAY — Rosso Eat Drink Stay">
+  <meta property="og:title" content="MEAT SELECTION — Rosso Eat Drink Stay">
   <meta property="og:description" content="Il mercoledì si fa serio. -10% sui migliori tagli. Prenota ora.">
   <meta property="og:image" content="utilizzabile.jpg">
   <meta name="robots" content="noindex, nofollow">
@@ -287,6 +287,48 @@
       color: rgba(255,255,255,0.25);
       margin-bottom: 14px;
       user-select: none;
+    }
+
+    /* hero discount badge */
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 16px;
+      background: rgba(255, 184, 0, 0.10);
+      border: 1.5px solid var(--gold);
+      border-radius: 4px;
+      padding: 10px 22px 10px 18px;
+      margin-top: 24px;
+      opacity: 0;
+      animation: fadeUp 0.7s ease 1.15s forwards;
+    }
+    .hero-badge-pct {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 56px;
+      line-height: 1;
+      color: var(--gold);
+      letter-spacing: 1px;
+    }
+    .hero-badge-text {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+    .hero-badge-label {
+      font-family: 'Inter', sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+    .hero-badge-sub {
+      font-family: 'Inter', sans-serif;
+      font-size: 10px;
+      font-weight: 400;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--cream-dim);
     }
 
     /* hero CTA */
@@ -837,9 +879,16 @@
 
     footer p {
       font-size: 11px;
-      color: rgba(255,255,255,0.2);
+      color: rgba(255,255,255,0.42);
       letter-spacing: 1px;
       line-height: 2;
+    }
+
+    footer p:first-of-type {
+      color: rgba(255,255,255,0.7);
+      font-weight: 600;
+      letter-spacing: 2px;
+      margin-bottom: 4px;
     }
 
     /* ── SCROLL REVEAL ───────────────────────────────────── */
@@ -872,11 +921,12 @@
       nav { padding: 16px 24px; }
 
       /* ── HERO typography ── */
-      .hero-info { gap: 8px; margin-bottom: 20px; }
-      .hero-eyebrow { font-size: 13px; letter-spacing: 3px; }
-      .hero-location { font-size: 12px; letter-spacing: 2px; }
-      .hero-sub { font-size: 20px; margin-top: 14px; }
-      .cd-label { font-size: 12px; letter-spacing: 3px; }
+      .hero-content { padding: 0 22px; width: 100%; }
+      .hero-info { gap: 8px; margin-top: 18px; }
+      .hero-eyebrow { font-size: 12px; letter-spacing: 1.5px; line-height: 1.5; }
+      .hero-location { font-size: 12px; letter-spacing: 1.5px; }
+      .hero-sub { font-size: 22px; margin-top: 14px; }
+      .cd-label { font-size: 12px; letter-spacing: 2px; text-align: center; }
       .cd-unit { font-size: 10px; letter-spacing: 1.5px; margin-top: 4px; }
 
       /* ── MOMENTO ── */
@@ -946,7 +996,7 @@
       .btn { font-size: 12px; padding: 16px 32px; letter-spacing: 2px; }
       .sticky-cta a { padding: 13px 24px; font-size: 12px; }
 
-      footer p { font-size: 12px; letter-spacing: 0.5px; color: rgba(255,255,255,0.3); }
+      footer p { font-size: 12px; letter-spacing: 0.5px; color: rgba(255,255,255,0.45); }
     }
   </style>
 </head>
@@ -977,6 +1027,14 @@
     </h1>
 
     <p class="hero-sub">Il mercoledì si fa serio.</p>
+
+    <div class="hero-badge">
+      <span class="hero-badge-pct">-10%</span>
+      <div class="hero-badge-text">
+        <span class="hero-badge-label">Sconto esclusivo</span>
+        <span class="hero-badge-sub">su tutta la selezione</span>
+      </div>
+    </div>
 
     <div class="cd-wrap">
       <p class="cd-label">Prossima Meat Selection tra</p>
@@ -1144,7 +1202,7 @@
 
 <!-- ── FINAL CTA ──────────────────────────────────────────── -->
 <section class="final" aria-label="Prenota il tuo tavolo">
-  <p class="final-eyebrow rv">— Il tuo Meat Day ti aspetta —</p>
+  <p class="final-eyebrow rv">— La tua Meat Selection ti aspetta —</p>
   <h2 class="final-hl rv d1">Il tuo tavolo<br>ti aspetta.</h2>
   <p class="final-sub rv d2">I posti sono limitati. Il mercoledì passa in fretta. La carne no.</p>
   <div class="rv d3">
@@ -1162,7 +1220,7 @@
   <img src="LOGO ROSSO PIENO 2-01 (1).png" alt="Rosso" class="footer-logo">
   <p>Viale Aventino 32, Roma</p>
   <p>© 2025 Rosso Eat Drink &amp; Stay · Tutti i diritti riservati</p>
-  <p>Promo Meat Day valida ogni mercoledì · Min. 3 persone · Esclusivamente sulla Meat Selection</p>
+  <p>Promo Meat Selection valida ogni mercoledì · Min. 3 persone · Esclusivamente sui tagli selezionati</p>
 </footer>
 
 <!-- ── JS ─────────────────────────────────────────────────── -->
