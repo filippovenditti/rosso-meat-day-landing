@@ -293,42 +293,52 @@
     .hero-badge {
       display: inline-flex;
       align-items: center;
-      gap: 16px;
-      background: rgba(255, 184, 0, 0.10);
+      gap: 20px;
+      background: rgba(0, 0, 0, 0.60);
       border: 1.5px solid var(--gold);
       border-radius: 4px;
-      padding: 10px 22px 10px 18px;
+      padding: 14px 28px;
       margin-top: 24px;
       opacity: 0;
       animation: fadeUp 0.7s ease 1.15s forwards;
+      backdrop-filter: blur(10px);
     }
     .hero-badge-pct {
       font-family: 'Bebas Neue', sans-serif;
-      font-size: 56px;
+      font-size: clamp(52px, 5vw, 80px);
       line-height: 1;
       color: var(--gold);
-      letter-spacing: 1px;
+      letter-spacing: 2px;
+    }
+    .hero-badge-sep {
+      width: 1px;
+      height: 48px;
+      background: rgba(255, 184, 0, 0.35);
+      flex-shrink: 0;
     }
     .hero-badge-text {
       display: flex;
       flex-direction: column;
-      gap: 3px;
+      gap: 5px;
+      text-align: left;
     }
     .hero-badge-label {
       font-family: 'Inter', sans-serif;
-      font-size: 10px;
+      font-size: clamp(11px, 1vw, 15px);
       font-weight: 700;
       letter-spacing: 3px;
       text-transform: uppercase;
       color: var(--gold);
+      white-space: nowrap;
     }
     .hero-badge-sub {
       font-family: 'Inter', sans-serif;
-      font-size: 10px;
+      font-size: clamp(10px, 0.85vw, 13px);
       font-weight: 400;
       letter-spacing: 2px;
       text-transform: uppercase;
-      color: var(--cream-dim);
+      color: var(--cream);
+      white-space: nowrap;
     }
 
     /* hero CTA */
@@ -1030,6 +1040,7 @@
 
     <div class="hero-badge">
       <span class="hero-badge-pct">-10%</span>
+      <div class="hero-badge-sep" aria-hidden="true"></div>
       <div class="hero-badge-text">
         <span class="hero-badge-label">Sconto esclusivo</span>
         <span class="hero-badge-sub">su tutta la selezione</span>
